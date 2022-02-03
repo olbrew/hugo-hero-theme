@@ -17,14 +17,15 @@
     <div class="col-12 col-md-8">
       {{ .Content }}
       <ul>
-        <li><strong>Phone: </strong>{{ .Site.Data.contact.phone }}</li>
+        <li><strong>Telefoon: </strong><a href="tel:{{ .Site.Data.contact.phone | urlize }}">{{ .Site.Data.contact.phone }}</a></li>
         <li><strong>Email: </strong><a href="mailto:{{ .Site.Data.contact.email }}">
             {{ .Site.Data.contact.email }}</a></li>
-        {{ if .Site.Data.contact.address }}
-        <li style="white-space: pre-wrap;"><strong>Address: </strong><br>{{ .Site.Data.contact.address }}</li>
+        {{ with .Site.Data.contact.address }}
+        <li style="white-space: pre-wrap;"><strong>Adres: </strong><br><a target="_blank" href="{{ $.Site.Data.contact.googleMapsLink }}">{{ . }}</a></li><br>
+        <iframe src="{{ $.Site.Data.contact.googleMapsEmbed }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         {{ end }}
       </ul>
-      <h4 class="mt-4">Business Hours</h4>
+      <h4 class="mt-4">Openingsuren</h4>
       <table class="table table-sm opening-hours-table">
         {{ range .Site.Data.contact.hours }}
         <tr>
@@ -32,6 +33,13 @@
           <td class="opens">{{ .open }}</td>
           <td>-</td>
           <td class="closes">{{ .close }}</td>
+          {{ with .open2 }}
+          <td class="opens">{{ . }}</td>
+          {{ end }}
+          {{ with .close2 }}
+          <td>-</td>
+          <td class="closes">{{ . }}</td>
+          {{ end }}
         </tr>
         {{ end }}
       </table>
