@@ -22,7 +22,10 @@
             {{ .Site.Data.contact.email }}</a></li>
         {{ with .Site.Data.contact.address }}
         <li style="white-space: pre-wrap;"><strong>Adres: </strong><br><a target="_blank" href="{{ $.Site.Data.contact.googleMapsLink }}">{{ . }}</a></li><br>
-        <iframe src="{{ $.Site.Data.contact.googleMapsEmbed }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="map-responsive">
+            <iframe src="{{ $.Site.Data.contact.googleMapsEmbed }}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
         {{ end }}
       </ul>
       <h4 class="mt-4">Openingsuren</h4>
