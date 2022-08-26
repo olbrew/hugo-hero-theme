@@ -15,6 +15,7 @@
 <meta name="twitter:creator" content="{{ .Site.Params.homepage_meta_tags.meta_twitter_creator }}" />
 {{ end }}
 
+
 {{ define "main" }}
 
 {{ partial "hero-image-fullscreen.html" (dict "background" .Params.heroBackground "heading" .Params.heroHeading "subheading" .Params.heroSubHeading "content" .)}}
@@ -40,25 +41,29 @@
             {{ .Site.Data.contact.email }}</a></li>
         {{ with .Site.Data.contact.address }}
         <li style="white-space: pre-wrap;"><strong>Adres: </strong><br><a target="_blank" href="{{ $.Site.Data.contact.googleMapsLink }}">{{ . }}</a></li><br>
-        <div class="map-responsive" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <div class="container-fluid" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
             <iframe src="{{ $.Site.Data.contact.googleMapsEmbed }}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="1200" height="900" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
         {{ end }}
       </ul>
       <h4 class="mt-4">Openingsuren</h4>
-      <table class="table table-sm opening-hours-table">
+      <table class="table table-sm table-hover opening-hours-table">
         {{ range .Site.Data.contact.hours }}
         <tr>
           <td class="day font-weight-bold">{{ .day }}</td>
+          {{ if .close }}
           <td class="opens">{{ .open }}</td>
           <td>-</td>
+          {{ if .open2 }}
           <td class="closes">{{ .close }}</td>
-          {{ with .open2 }}
-          <td class="opens">{{ . }}</td>
-          {{ end }}
-          {{ with .close2 }}
+          <td class="opens">{{ .open2 }}</td>
           <td>-</td>
-          <td class="closes">{{ . }}</td>
+          <td class="closes">{{ .close2 }}</td>
+          {{ else }}
+          <td class="closes" colspan="6">{{ .close }}</td>
+          {{ end }}
+          {{ else }}
+          <td class="opens" colspan="10">{{ .open }}</td>
           {{ end }}
         </tr>
         {{ end }}
@@ -72,12 +77,12 @@
 {{ $reusablePages := $headless.Resources.ByType "page" }}
 {{ $reusablePages := sort $reusablePages ".Params.weight" }}
 {{ range first 1 $reusablePages }}
-<div id="about" class="strip bg-cover bg-position-top bg-overlay" style="background-image: url('{{ .Params.background | relURL }}');">
+<div id="about" class="strip bg-cover bg-position-top bg-overlay" style="background-image: url('{{ .Params.background | relURL }}'); background-color: rgb(255, 255, 255, 0.4)">
   <div class="container pt-17 pb-17">
     <div class="row">
       <div class="col-12 col-md-6 offset-md-6">
-        <h2 class="text-primary text-capitalize text-white">{{ .Title }}</h2>
-        <p class="text-white">{{ .Content }}</p>
+        <h2 class="text-primary text-capitalize">{{ .Title }}</h2>
+        <p>{{ .Content }}</p>
         <!--<a class="button" href="{{ .Params.buttonLink | relURL }}">{{ .Params.button }}</a>-->
       </div>
     </div>
@@ -87,7 +92,7 @@
 
 {{ $services := where (where .Site.RegularPages "Type" "services") ".Params.featured" true }}
 {{if gt (len $services) 0}}
-<div class="container pt-8 pb-8 pb-md-14 pt-md-14">
+<div id="services" class="container pt-8 pb-8 pb-md-14 pt-md-14">
   <div class="row justify-content-start">
     <div class="col-12">
       <h2 class="text-center mb-3">Onze Diensten</h2>
@@ -109,7 +114,7 @@
 <div id="book" class="strip bg-primary bg-cover bg-position-top bg-overlay" style='background-image: url("{{ .Params.background | relURL }}");'>
   <div class="container pt-8 pb-8 pb-md-12 pt-md-12">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-8 text-center text-white">
+      <div class="col-12 col-md-8 text-center">
         <h2>{{ .Title }}</h2>
         {{ .Content }}
         <a class="button button-white" target="_blank" href="{{ .Params.buttonLink | relURL }}">{{ .Params.button }}</a>
