@@ -2,8 +2,8 @@
   <ul>
     {{ $currentPage := . }}
     {{ range .Site.Menus.main }}
-    <li class="menu-item-{{ .Name | lower }}{{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }}">
-      <a href="{{.URL}}">
+    <li class="menu-item-{{ .Name | urlize }}{{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }} toggle-mobile-menu">
+      <a href="{{.URL}}" class="menu-items">
         {{ .Pre }}
         <span>{{ .Name }}</span>
       </a>
