@@ -4,12 +4,12 @@
       <div class="col-12">
         <div class="sub-footer-inner">
           <ul>
-              <li><strong>Telefoon: </strong><a href="tel:{{ .Site.Data.contact.phone | urlize }}">{{ .Site.Data.contact.phone }}</a></li>
-            <li><strong>Email: </strong><a href="mailto:{{ .Site.Data.contact.email }}">
-                {{ .Site.Data.contact.email }}</a></li>
+              <strong><li><a class="text-white" href="{{ .Site.Data.contact.onlineCalendarLink }}" target="_blank">{{ .Site.Data.contact.bookingSentence }}</a></li></strong>
           </ul>
           <ul>
-              <li class="zerostatic"><a href="{{ .Site.Data.contact.onlineCalendarLink }}" target="_blank">{{ .Site.Data.contact.bookingSentence }}<a></li>
+              <li>Telefoon: <a class="text-white" href="tel:{{ .Site.Data.contact.phone | urlize }}">{{ .Site.Data.contact.phone }}</a></li>
+            <li>Email: <a class="text-white" href="mailto:{{ .Site.Data.contact.email }}">
+                {{ .Site.Data.contact.email }}</a></li>
           </ul>
         </div>
       </div>
