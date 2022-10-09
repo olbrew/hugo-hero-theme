@@ -20,7 +20,6 @@
 
 {{ partial "hero-image-fullscreen.html" (dict "background" .Params.heroBackground "heading" .Params.heroHeading "subheading" .Params.heroSubHeading "content" .)}}
 
-<!-- Temporarily copy contact.html here -->
 <div id="contact">
 <div class="intro intro-small">
   <div class="container">
@@ -46,7 +45,7 @@
         </div>
         {{ end }}
       </ul>
-      <h4 class="mt-4">Openingsuren</h4>
+      <h5 class="mt-4">Openingsuren</h4>
       <table class="table table-sm table-hover opening-hours-table">
         {{ range .Site.Data.contact.hours }}
         <tr>
@@ -68,10 +67,10 @@
         </tr>
         {{ end }}
       </table>
+      {{ with $.Site.Data.contact.hoursComment }}<p>{{ . | safeHTML }}</p>{{ end }}
     </div>
   </div>
 </div>
-<!-- End copy contact.html -->
 
 {{ $headless := .Site.GetPage "/homepage" }}
 {{ $reusablePages := $headless.Resources.ByType "page" }}
