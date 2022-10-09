@@ -41,11 +41,6 @@
           font-weight: bold;
           color: #ffffff;
         }
-        &.zerostatic {
-          a {
-            color: #ffffff;
-          }
-        }
       }
       @include media-breakpoint-up(sm) {
         li {
