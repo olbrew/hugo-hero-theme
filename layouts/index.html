@@ -38,7 +38,8 @@
         <ul>
           <li><strong>Telefoon: </strong><a href="tel:{{ .Site.Data.contact.phone | urlize }}">{{
               .Site.Data.contact.phone }}</a></li>
-          <li><strong>Email: </strong><a href="mailto:{{ .Site.Data.contact.email }}">
+          <li><strong>Email: </strong><a
+              href="mailto:{{ .Site.Data.contact.email }}?subject=Question%20from%20{{ .Site.BaseURL }}">
               {{ .Site.Data.contact.email }}</a></li>
           {{ with .Site.Data.contact.address }}
           <li style="white-space: pre-wrap;"><strong>Adres: </strong><br><a target="_blank"
