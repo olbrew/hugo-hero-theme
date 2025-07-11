@@ -2,6 +2,13 @@
   background: $secondary;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-bottom: 95px;
+  @include media-breakpoint-up(sm) {
+    margin-bottom: 70px;
+  }
+  @include media-breakpoint-up(md) {
+    margin-bottom: 45px;
+  }
   .footer-inner {
     display: flex;
     justify-content: space-between;
