@@ -3,11 +3,13 @@
     <div class="row">
       <div class="col-12">
         <div class="footer-inner">
+          <span>Created by <a href="{{ .Site.Params.creator_url }}">{{ .Site.Params.creator }}</a></span>
           {{ if .Site.Data.social }}
           <ul class="social">
-              {{ range .Site.Data.social }}
-                  <li><a href="{{ .link }}" target="blank"><img width="20" height="20" src="{{ .image | relURL }}" title="{{ .name }}" alt="{{ .name }}" /></a></li>
-              {{ end }}
+            {{ range .Site.Data.social }}
+            <li><a href="{{ .link }}" target="blank"><img width="20" height="20" src="{{ .image | relURL }}"
+                  title="{{ .name }}" alt="{{ .name }}" /></a></li>
+            {{ end }}
           </ul>
           {{ end }}
           <ul class="footer-menu">
